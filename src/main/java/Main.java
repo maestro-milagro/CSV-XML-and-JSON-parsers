@@ -129,4 +129,25 @@ public class Main {
         return list;
 
     }
+    public  String listToJsonT(List<Employee> list) {
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        Gson gson = gsonBuilder.create();
+        Type listType = new TypeToken<List<Employee>>() {
+        }.getType();
+
+        return gson.toJson(list, listType);
+
+    }
+    public List<Employee> jsonToListT(String text) throws ParseException {
+        List<Employee> list = new ArrayList<>();
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        Gson gson = gsonBuilder.create();
+        JsonParser parser = new JsonParser();
+        JsonArray jsonArray = (JsonArray) parser.parse(text);
+        for (JsonElement e : jsonArray) {
+            list.add(gson.fromJson(e, Employee.class));
+        }
+        return list;
+
+    }
 }
