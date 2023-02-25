@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Employee {
     public long id;
     public String firstName;
@@ -44,5 +46,15 @@ public class Employee {
                 " lastName = " + lastName +
                 " country = " + country +
                 " age = " + age;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstName,lastName,id,age,country);
+    }
+    @Override
+    public boolean equals(Object obj){
+        Employee employee = (Employee) obj;
+        return firstName.equals(employee.firstName)&&lastName.equals(employee.lastName)&&country.equals(employee.country)&&age==employee.age&&id==employee.id;
     }
 }
